@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MilesTailsApp for Windows(R)95/98</title>
+
+    <style>
+        html {
+            zoom: 1.75;
+        }
+
+        body {
+            background-color: #008080;
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-family: "MS Sans Serif", Arial, sans-serif;
+        }
+
+        .window {
+            max-width: 100%;
+        }
+
+        #map {
+            height: 300px;
+            width: 100%;
+            border: 2px inset #ffffff;
+        }
+
+        .desktop-icon {
+            width: 80px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+            text-shadow: 1px 1px 1px #000;
+        }
+
+        .desktop-icon img {
+            width: 32px;
+            height: 32px;
+            display: block;
+            margin: 0 auto 5px;
+        }
+
+        .icons-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="window" style="width: 600px; margin: 20px auto;">
+        <div class="title-bar">
+            <div class="title-bar-text">Miles' Application Windows 95/98 Edition</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <h4>Welcome to the Official Miles Tails Delta-777 site!</h4>
+            <p>This is my bio in which you can learn more about me and also find my other links to my channels or servers, enjoy!</p>
+
+            <p>About me:</p>
+            <ul>
+                <li>Name: Miles "Samir" Cibis</li>
+                <li>Age: 18</li>
+                <li>Born in: January 13th, 2008</li>
+                <li>Can speak: English, Estonian, Russian, Ukrainian, Finnish, German and Swedish (last two languages can't speak fluently)</li>
+                <li>Location: Tallinn, Harjumaa, Estonia</li>
+                <li>My hobbies and interests: Gaming, Analyzing the Video Game industry, Software development, Pianist (Piano man), Guitarist and also video game console collector.</li>
+            </ul>
+
+            <h4 style="font-size: medium;">My links and contacts:</h4>
+             
+            <div class="icons-row">
+                <div class="desktop-icon" onclick="window.open('https://www.youtube.com/@SamiriusProduction2008', '_blank')">
+                    <img src="icons\youtube.jpg" style="margin-top: 5px; height: 45px; width: 55px; display: flex;">
+                    YouTube
+                </div>
+                <div class="desktop-icon" onclick="window.open('https://discord.gg/eXpm3YjwCW', '_blank')">
+                    <img src="icons\discord.jpg" style="margin-top: 5px; height: 45px; width: 55px; display: flex;">
+                    Discord
+                </div>
+                <div class="desktop-icon" onclick="window.open('https://www.tiktok.com/@foxyrock17', '_blank')">
+                    <img src="icons\tiktok.jpg" style="margin-top: 5px; height: 45px; width: 55px; display: flex;">
+                    TikTok
+                </div>
+                <div class="desktop-icon" onclick="window.open('https://steamcommunity.com/id/SamiriusProduction/', '_blank')">
+                    <img src="icons\steam.jpg" style="margin-top: 5px; height: 45px; width: 55px; display: flex;">
+                    Steam
+                </div>
+                <div class="desktop-icon" onclick="window.open('https://github.com/milestails777', '_blank')">
+                    <img src="icons\github.jpg" style="margin-top: 5px; height: 45px; width: 55px; display: flex;">
+                    GitHub
+                </div>
+                <div class="desktop-icon" onclick="window.open('https://gamejolt.com/@samircibis2008', '_blank')">
+                    <img src="icons\gamejolt.jpg" style="margin-top: 5px; height: 45px; width: 55px; display: flex;">
+                    GameJolt
+                </div>
+            </div>
+        </div>
+
+        <div class="window" style="width: 592px">
+            <div class="title-bar">
+                <div class="title-bar-text">Location</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <p>This is where our company is located:</p>
+                <div id="map"></div>
+                <div class="status-bar">
+                    <p class="status-bar-field">Powered by (c)OpenStreetMap and Leaflet</p>
+                    <p class="status-bar-field">Coordinates: 50.087551966613894, 8.617673195879746</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="window" style="width: 592px; margin-top: 10px;">
+            <div class="title-bar">
+                <div class="title-bar-text">Audio Player</div>
+                <div class="title-bar-controls">
+                <button aria-label="Close"></button>
+                </div>
+            </div>
+
+            <div class="window-body">
+                <input type="file" id="fileInput" accept="music/*" style="width: 592px;">
+
+                <audio id="player"></audio>
+
+                <div style="margin: 8px 0">
+                <button id="play">▶ Play</button>
+                <button id="pause">⏸ Pause</button>
+                <button id="stop">⏹ Stop</button>
+                </div>
+
+                <label>
+                Volume
+                <input id="volume" type="range" min="0" max="1" step="0.01" value="1">
+                </label>
+            </div>
+        </div>
+
+        <div class="window" style="width: 592px; margin-top: 10px;">
+            <div class="title-bar">
+                <div class="title-bar-text">My photo album</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <p>Here is my pictures, which you can see about me or my hobbies:</p>
+                <div class="photo-gallery">
+                    <img src="photos/photo1.jpg" alt="Photo 1" style="width: 173px; height: 120px; margin: 5px; border: 3px solid; border-top-color: #dfdfdf; border-left-color: #dfdfdf; border-bottom-color: #404040; border-right-color: #404040; background: #c0c0c0;">
+                    <img src="photos/photo2.jpg" alt="Photo 2" style="width: 173px; height: 120px; margin: 5px; border: 3px solid; border-top-color: #dfdfdf; border-left-color: #dfdfdf; border-bottom-color: #404040; border-right-color: #404040; background: #c0c0c0;">
+                    <img src="photos/photo3.jpg" alt="Photo 3" style="width: 173px; height: 120px; margin: 5px; border: 3px solid; border-top-color: #dfdfdf; border-left-color: #dfdfdf; border-bottom-color: #404040; border-right-color: #404040; background: #c0c0c0;">
+                    <img src="photos/photo4.jpg" alt="Photo 4" style="width: 173px; height: 120px; margin: 5px; border: 3px solid; border-top-color: #dfdfdf; border-left-color: #dfdfdf; border-bottom-color: #404040; border-right-color: #404040; background: #c0c0c0;">
+                    <img src="photos/photo5.jpg" alt="Photo 5" style="width: 173px; height: 120px; margin: 5px; border: 3px solid; border-top-color: #dfdfdf; border-left-color: #dfdfdf; border-bottom-color: #404040; border-right-color: #404040; background: #c0c0c0;">
+                    <img src="photos/photo6.jpg" alt="Photo 6" style="width: 173px; height: 120px; margin: 5px; border: 3px solid; border-top-color: #dfdfdf; border-left-color: #dfdfdf; border-bottom-color: #404040; border-right-color: #404040; background: #c0c0c0;">
+                <div class="status-bar">
+                    <p class="status-bar-field">(c)Samirius Production 2015-2026</p>
+                    <p class="status-bar-field">6 file(s) element(s): Date of Creation - 19.12.2025</p>
+                </div>
+            </div>
+
+            <div class="window" style="width: 592px; height: 200px; margin-top: 20px;">
+                <div class="title-bar">
+                    <div class="title-bar-text">GIF Player 98</div>
+                    <div class="title-bar-controls">
+                    <button aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <img src="photos/dc10.gif" alt="GIF" style="width: 557px; height: 165px; display: block;">
+                </div>
+            </div>
+
+            <div style="margin: 8px 0; margin-left: 150px;">
+                <button onclick="window.location.href='indexxp.html';">WinXP Version</button>
+                <button onclick="window.location.href='index7.html';">Win7 Version</button>
+                <button onclick="window.location.href='index.html';">Win9x Version</button>
+            </div>
+
+
+    </div>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            // Here will be Frankfurt as current location
+            var map = L.map('map').setView([50.087551966613894, 8.617673195879746], 10);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+            L.marker([50.087551966613894, 8.617673195879746]).addTo(map)
+                .bindPopup('Ma olen siin ja see on minu territorium!!!')
+                .openPopup();
+
+
+            const audio = document.getElementById("player");
+            const fileInput = document.getElementById("fileInput");
+
+            fileInput.addEventListener("change", () => {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            audio.src = URL.createObjectURL(file);
+            audio.load();
+            audio.play();
+            });
+
+            document.getElementById("play").onclick = () => audio.play();
+            document.getElementById("pause").onclick = () => audio.pause();
+            document.getElementById("stop").onclick = () => {
+            audio.pause();
+            audio.currentTime = 0;
+            };
+
+            document.getElementById("volume").oninput = e => {
+            audio.volume = e.target.value;
+            };
+        </script>
+    </body>
+</html>
